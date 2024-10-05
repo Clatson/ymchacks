@@ -57,7 +57,5 @@ async def upload_audio_and_transcribe(file: UploadFile = File(...)):
         generated_text = "No transcript available."
 
     return {
-        "message": f"Audio '{file.filename}' received and transcribed successfully",
-        "transcript": transcript,
-        "generated_text": generated_text
+        generated_text
     }
