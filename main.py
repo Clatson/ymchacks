@@ -4,14 +4,20 @@ import google.generativeai as genai
 from fastapi import FastAPI
 from dotenv import load_dotenv
 import os
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 
 # Allow all origins, all methods, and all headers (for simplicity)
 # Function to process audio transcription
 # Load the .env file
 load_dotenv()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows any origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods (GET, POST, PUT, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
 # Access the API key from the environment
 google_api_key = os.getenv("GOOGLE_API_KEY")
 def process_audio_and_transcribe(file_location):
