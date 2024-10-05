@@ -50,7 +50,7 @@ async def upload_audio_and_transcribe(file: UploadFile = File(...)):
     if transcript:
         genai.configure(api_key=google_api_key)
         model = genai.GenerativeModel('gemini-pro')
-        question = "Rate this content 1 to 10 for kids: " + transcript
+        question = "Remove unwanted text, give this as class notes: " + transcript
         response = model.generate_content(question)
         generated_text = response.text
     else:
